@@ -57,6 +57,17 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/btn_entry_date" />
 
+
+  <!--  <TextView-->
+<!--      android:id="@+id/txt_selected_time"-->
+<!--      android:layout_width="wrap_content"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:layout_marginTop="12dp"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintHorizontal_bias="0.798"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toBottomOf="@+id/txt_selected_date" />-->
+
   <TextView
       android:id="@+id/textView"
       android:layout_width="wrap_content"
@@ -66,27 +77,29 @@
       app:layout_constraintEnd_toStartOf="@+id/btn_end_time"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/btn_start_time"
-      app:layout_constraintTop_toTopOf="@+id/btn_start_time" />
+      app:layout_constraintTop_toTopOf="@+id/btn_start_time"
+      app:layout_constraintVertical_bias="0.517" />
 
   <Button
       android:id="@+id/btn_end_time"
       style="?android:buttonBarButtonStyle"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:text="@string/end_time"
-  app:layout_constraintBottom_toBottomOf="@+id/textView"
-  app:layout_constraintEnd_toEndOf="parent"
-  app:layout_constraintHorizontal_bias="0.5"
-  app:layout_constraintStart_toEndOf="@+id/textView"
-  app:layout_constraintTop_toTopOf="@+id/textView" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/end_time"
+      app:layout_constraintBottom_toBottomOf="@+id/textView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/textView"
+      app:layout_constraintTop_toTopOf="@+id/textView" />
 
   <Button
       android:id="@+id/btn_save"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
+      android:layout_marginTop="20dp"
       android:text="@string/save_label"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.513"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView" />
 
