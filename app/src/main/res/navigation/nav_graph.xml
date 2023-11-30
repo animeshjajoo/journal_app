@@ -13,16 +13,24 @@
     <action
         android:id="@+id/addEntryAction"
         app:destination="@id/entryDetailsFragment" />
+    <action
+        android:id="@+id/action_get_info"
+        app:destination="@id/infoFragment" />
+
   </fragment>
   <fragment
       android:id="@+id/entryDetailsFragment"
       android:name="androidsamples.java.journalapp.EntryDetailsFragment"
       android:label="fragment_entry_details"
       tools:layout="@layout/fragment_entry_details">
+    <action
+        android:id="@+id/putEntry"
+        app:destination="@id/entryListFragment" />
     <argument
         android:name="entryId"
-        android:defaultValue='""'
-        app:argType="string" />
+        android:defaultValue="@null"
+        app:argType="java.util.UUID"
+        app:nullable="true"/>
     <action
         android:id="@+id/datePickerAction"
         app:destination="@id/datePickerDialog" />
@@ -41,6 +49,12 @@
         android:name="selectedDate"
         app:argType="integer"
         android:defaultValue="0" />
+    <action
+        android:id="@+id/action_entryDetailsFragment_to_onDeleteConformationDialog2"
+        app:destination="@id/onDeleteConformationDialog" />
+    <action
+        android:id="@+id/onDeleteToEntryList"
+        app:destination="@id/entryListFragment" />
   </fragment>
 
   <dialog
@@ -50,4 +64,13 @@
   <dialog
       android:id="@+id/timePickerDialog"
       android:name="androidsamples.java.journalapp.TimePickerFragment" />
+
+  <dialog
+      android:id="@+id/onDeleteConformationDialog"
+      android:name="androidsamples.java.journalapp.DeleteEntryFragment"/>
+  <fragment
+      android:id="@+id/infoFragment"
+      android:name="androidsamples.java.journalapp.InfoFragment"
+      android:label="fragment_info"
+      tools:layout="@layout/fragment_info" />
 </navigation>

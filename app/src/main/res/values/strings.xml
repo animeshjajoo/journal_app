@@ -8,4 +8,11 @@
   <string name="save_label">Save</string>
   <string name="to">To</string>
   <string name="record_entry">Record Entry</string>
+  <string name="delete_conformation">Do you want to delete this entry?</string>
+  <string name="pos_confirm">Yes</string>
+  <string name="neg_confirm">Cancel</string>
+  <string name="delete_entry">DELETE</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="info_fragment">Hello, This is a Journal App that will help you to record and show the date, start time, and end time of each journal entry.</string>
+  <string name="share_with">Share with</string>
 </resources>

@@ -3,26 +3,44 @@ package androidsamples.java.journalapp;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.widget.DatePicker;
+import android.view.View;
 
-import java.util.Calendar;
 import java.util.Date;
 
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
+public class DatePickerFragment extends DialogFragment {
 
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
-  private static final String ARG_INITIAL_DATE = "initial_date";
-  private Date selectedDate;
+  private EntryDetailsSharedViewModel sharedVm;
+  private static final String TAG = "DatePickerFragment";
+  private OnDialogCloseListener listener;
+
+  public DatePickerFragment(OnDialogCloseListener listener) {
+    this.listener = listener;
+  }
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+    sharedVm = new ViewModelProvider(getActivity()).get(EntryDetailsSharedViewModel.class);
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+  }
 
   @NonNull
-  public static DatePickerFragment newInstance(Date date) {
+  public static DatePickerFragment newInstance(Date date, OnDialogCloseListener listener) {
+    DatePickerFragment fragment = new DatePickerFragment(listener);
     Bundle args = new Bundle();
-    args.putSerializable(ARG_INITIAL_DATE, date);
-
-    DatePickerFragment fragment = new DatePickerFragment();
+    args.putInt("Year", date.getYear() + 1900);
+    args.putInt("Month", date.getMonth());
+    args.putInt("Date", date.getDate());
     fragment.setArguments(args);
     return fragment;
   }
@@ -30,33 +48,11 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    // Retrieve the initial date from arguments
-    if (getArguments() != null) {
-      selectedDate = (Date) getArguments().getSerializable(ARG_INITIAL_DATE);
-    }
-
-    // Use the current date as default if no initial date is provided
-    final Calendar calendar = Calendar.getInstance();
-    if (selectedDate != null) {
-      calendar.setTime(selectedDate);
-    }
-
-    int year = calendar.get(Calendar.YEAR);
-    int month = calendar.get(Calendar.MONTH);
-    int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-    // Create and return the DatePickerDialog
+    Bundle bundle = this.getArguments();
     return new DatePickerDialog(requireContext(), (dp, y, m, d) -> {
-      // Handle the selected date
-      Calendar selectedCalendar = Calendar.getInstance();
-      selectedCalendar.set(y, m, d);
-      selectedDate = selectedCalendar.getTime();
-
-    }, year, month, day);
-  }
-
-  @Override
-  public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-    EntryDetailsViewModel.setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
+      // store the date in the shared view model
+      sharedVm.storeDate(y, m, d);
+      listener.onDateDialogClose();
+    },bundle.getInt("Year"),bundle.getInt("Month"),bundle.getInt("Date"));
   }
 }
