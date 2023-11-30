@@ -41,7 +41,7 @@ public class JournalEntry {
     }
 
     @NonNull
-    public String getMUid() {
+    public UUID getMUid() {
         return mUid;
     }
 
