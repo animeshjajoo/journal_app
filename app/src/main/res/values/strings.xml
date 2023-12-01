@@ -13,6 +13,6 @@
   <string name="neg_confirm">Cancel</string>
   <string name="delete_entry">DELETE</string>
   <!-- TODO: Remove or change this placeholder text -->
-  <string name="info_fragment">Hello, This is a Journal App that will help you to record and show the date, start time, and end time of each journal entry.</string>
+  <string name="hello_blank_fragment">This is a Journal app that records your activity, date and time. Try sharing your activities too!</string>
   <string name="share_with">Share with</string>
 </resources>

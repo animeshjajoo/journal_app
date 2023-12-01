@@ -46,7 +46,7 @@ public class EntryDetailsFragment extends Fragment implements OnDialogCloseListe
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mEntryDetailsSharedViewModel = new ViewModelProvider(getActivity()).get(EntryDetailsSharedViewModel.class);
-    UUID entryId = UUID.fromString(EntryDetailsFragmentArgs.fromBundle(getArguments()).getEntryId());
+    UUID entryId = EntryDetailsFragmentArgs.fromBundle(getArguments()).getEntryId();
     if(! (entryId == null)) {
       mEntryDetailsSharedViewModel.loadEntry(entryId);
       Log.d(TAG, "old uuid "+ entryId);

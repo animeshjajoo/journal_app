@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
@@ -134,12 +135,20 @@ public class EntryDetailsSharedViewModel extends ViewModel {
         return "" + dayOfWeek + ", " + month + " " + tDayOfMonth + ", " + tYear;
     }
 
-    public String getSTime() {
-        return shr + ":" + sm;
+    public String getSTime(){
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+        String formattedHour = decimalFormat.format(shr);
+        String formattedMinute = decimalFormat.format(sm);
+        String formattedTime = formattedHour + ":" + formattedMinute;
+        return formattedTime;
     }
 
-    public String getETime() {
-        return ehr + ":" + em;
+    public String getETime(){
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+        String formattedHour = decimalFormat.format(ehr);
+        String formattedMinute = decimalFormat.format(em);
+        String formattedTime = formattedHour + ":" + formattedMinute;
+        return formattedTime;
     }
 
     public void setStartTime(int hm, int m) {
